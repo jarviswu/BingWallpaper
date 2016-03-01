@@ -30,7 +30,7 @@ namespace BingWallPaper
                 return $"{Consts.BingJsonUrl}?format=js&idx={0}&n={1}&mkt={Region}";
             }
         }
-
+         
         public WallPaper(string resolution, string region, string filePath, string fileName)
         {
             Region = region;

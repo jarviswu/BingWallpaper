@@ -26,7 +26,7 @@ namespace BingWallPaper
         private string JsonUrl
         {
             get
-            {
+            { 
                 return $"{Consts.BingJsonUrl}?format=js&idx={0}&n={1}&mkt={Region}";
             }
         }

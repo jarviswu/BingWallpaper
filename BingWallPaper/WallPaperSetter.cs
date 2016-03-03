@@ -8,7 +8,6 @@ namespace BingWallPaper
 {
     public class WallPaperSetter
     {
-        public DateTime UpdateTime { get; set; }
 
         public bool SetWallPaper()
         {

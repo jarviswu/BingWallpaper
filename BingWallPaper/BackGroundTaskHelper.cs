@@ -9,7 +9,7 @@ namespace BingWallPaper
 {
     public class BackGroundTaskHelper
     {
-        public static async Task<BackgroundTaskRegistration> RegisterBackgroundTask(String taskEntryPoint, String name,
+        public static async Task<BackgroundTaskRegistration> RegisterBackgroundTask(string taskEntryPoint, string name,
             IBackgroundTrigger trigger, IBackgroundCondition condition)
         {
             await BackgroundExecutionManager.RequestAccessAsync();

@@ -50,7 +50,7 @@ namespace BingWallPaper
             [DataMember(Name = "copyrightlink")]
             public string CopyRightLink;
             [DataMember(Name = "wp")]
-            public Boolean Wp;
+            public bool Wp;
             [DataMember(Name = "hsh")]
             public string Hash;
             [DataMember(Name = "drk")]

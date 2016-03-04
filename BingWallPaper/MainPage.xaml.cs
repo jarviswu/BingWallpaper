@@ -25,6 +25,7 @@ namespace BingWallPaper
         public MainPage()
         {
             this.InitializeComponent();
+            ContentFrame.Navigate(typeof (TodayBing));
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -40,7 +41,18 @@ namespace BingWallPaper
 
         private void IconListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            if (TodayBingItem.IsSelected)
+            {
+                ContentFrame.Navigate(typeof(TodayBing));
+            }
+            else if (SettingItem.IsSelected)
+            {
+                ContentFrame.Navigate(typeof(Setting));
+            }
+            else if (FeedBackItem.IsSelected)
+            {
+                ContentFrame.Navigate(typeof(FeedBack));
+            }
         }
     }
 }

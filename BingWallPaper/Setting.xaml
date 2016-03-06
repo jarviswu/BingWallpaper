@@ -9,21 +9,20 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="10,10,10,0">
-
+            <TextBlock Text="自动更新壁纸" ></TextBlock>
+            <ToggleSwitch Name="SetWpSwitch" OffContent="关闭" OnContent="开启"  Margin="0,0,0,10" Toggled="ToggleSwitch_Toggled"/>
             <TextBlock Text="图片下载目录" Margin="0,0,0,5"></TextBlock>
-            
-            <!--<TextBlock  Text="D:/" Margin="0,0,0,5"></TextBlock>
-            <TextBox></TextBox>-->
-            <Button Margin="0,0,0,10" Content="C:\Users\whj92\Documents\Visual Studio 2015\Projects\Windows-universal-samples-master\Samples\FilePicker\cs" Background="#33FFFFFF" BorderBrush="Black" Foreground="Black"></Button>
-
+            <Button Name="BtnFolder" Margin="0,0,0,10" Content="C:\Users\whj92\Documents\Visual Studio 2015\Projects\Windows-universal-samples-master\Samples\FilePicker\cs" Background="#33FFFFFF" BorderBrush="Black" Foreground="Black" Click="BtnFolder_Click"></Button>
             <TextBlock Text="分辨率" Margin="0,0,0,5"></TextBlock>
-            <ComboBox Margin="0,0,0,10" SelectedIndex="1">
+            <ComboBox Name="CbResolution" Margin="0,0,0,10" SelectionChanged="CbResolution_SelectionChanged">
                 <ComboBoxItem Content="2736*1824"></ComboBoxItem>
                 <ComboBoxItem Content="1920*1080"></ComboBoxItem>
                 <ComboBoxItem Content="2736*1824"></ComboBoxItem>
             </ComboBox>
-            <TextBlock Text="每日更新时间（假的，由于系统限制暂时不知道怎么实现）" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
-            <Button Margin="0,0,0,10" Content="00：00" Background="#33FFFFFF" BorderBrush="Black" Foreground="Black"></Button>
+            <TextBlock Text="每日更新时间" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
+            <Button  Content="00：00" Background="#33FFFFFF" BorderBrush="Black" Foreground="Black"></Button>
+            <TextBlock Margin="0,0,0,10" TextWrapping="Wrap" Text="（假的，由于系统限制暂时不知道怎么实现，可我真的好想实现它，所以先放着了_(:D)∠)_）" Foreground="#FFF41111"></TextBlock>
+            <Button Content="现在就换！"></Button>
         </StackPanel>
         
     </Grid>

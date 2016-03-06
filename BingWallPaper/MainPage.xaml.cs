@@ -28,12 +28,6 @@ namespace BingWallPaper
             ContentFrame.Navigate(typeof (TodayBing));
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            var wallpaper = new WallPaper(Consts.Resolution.FhdLandscape, Consts.Region.ZhCn, "", "pic");
-            wallpaper.DownloadWallPaperAsync();
-        }
-
         private void HamburgerButton_OnClick(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;

@@ -12,6 +12,8 @@ namespace BingWallPaper
         public static async Task<BackgroundTaskRegistration> RegisterBackgroundTask(string taskEntryPoint, string name,
             IBackgroundTrigger trigger, IBackgroundCondition condition)
         {
+            UnregisterExistTask(name);
+
             await BackgroundExecutionManager.RequestAccessAsync();
 
             var builder = new BackgroundTaskBuilder
@@ -37,5 +39,20 @@ namespace BingWallPaper
 
             return task;
         }
+
+        private static void UnregisterExistTask(string taskName)
+        {
+            foreach (var cur in BackgroundTaskRegistration.AllTasks)
+            {
+                if (cur.Value.Name == taskName)
+                {
+                    cur.Value.Unregister(true);
+
+                }
+            }
+        }
+
+
     }
+
 }

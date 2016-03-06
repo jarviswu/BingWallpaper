@@ -28,7 +28,20 @@ namespace BingWallPaper
             public const string FhdPortrait = "1080x1920";
         }
 
+        public static readonly Dictionary<int, string> DicResolution = new Dictionary<int, string>
+        {
+            {1, "1366x768"},
+            {2, "768x1366"},
+            {3, "1920x1080"},
+            {4, "1080x1920"}
+        };
+
         public const string BingBaseUrl = "http://www.bing.com";
         public const string BingJsonUrl = "http://www.bing.com/HPImageArchive.aspx";
+
+        public static readonly string StrFolder = "Folder";
+        public static readonly string StrIsOn = "isOn";
+        public static readonly string StrResolution = "resolution";
+
     }
 }

@@ -21,8 +21,6 @@ namespace BingWallPaper
 
         public string FilePath { get; set; }
 
-        public string FileName { get; set; }
-
         private string JsonUrl
         {
             get
@@ -31,15 +29,14 @@ namespace BingWallPaper
             }
         }
          
-        public WallPaper(string resolution, string region, string filePath, string fileName)
+        public WallPaper(string resolution, string region, string filePath)
         {
             Region = region;
             Resolution = resolution;
-            FileName = fileName;
             FilePath = filePath;
         }
 
-        public async void DownloadWallPaperAsync()
+        public async Task<string> DownloadWallPaperAsync()
         {
             Uri bingUri;
             Uri.TryCreate(JsonUrl, UriKind.Absolute, out bingUri);
@@ -64,14 +61,20 @@ namespace BingWallPaper
             var rsp = await httpClient.GetAsync(bingUri2);
             var buffer = await rsp.Content.ReadAsBufferAsync();
 
+            var fileName = GetFileNameFromUrl(imageUrl);
             //get folder
             StorageFolder storageFolder = await KnownFolders.GetFolderForUserAsync(null /* current user */, KnownFolderId.PicturesLibrary);
             //create file
-            var file = await storageFolder.CreateFileAsync(FileName, CreationCollisionOption.ReplaceExisting);
+            var file = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             //write file
             await FileIO.WriteBufferAsync(file, buffer);
+
+            return file.Path;
         }
 
-
+        private static string GetFileNameFromUrl(String url)
+        {
+            return System.IO.Path.GetFileName(url);
+        }
     }
 }

@@ -5,27 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
+using Windows.Foundation;
 using Windows.Storage;
 using Windows.System.UserProfile;
-using BingWallpaper.Core;
 using BingWallper.Helper;
 
-namespace BingWallPaper
+
+namespace BingWallpaper.Core
 {
     public sealed class BackGroundTask : IBackgroundTask
     {
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            Debug.WriteLine("Task Start");
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
-            Debug.WriteLine("Task Start2");
-            if (await DownloadAndSetWallpaperAsync(false)) return;
-            Debug.WriteLine("Task Start3");
+            if (await DownloadAndSetWallpaperAsync(false)) return;   
             deferral.Complete();
-            Debug.WriteLine("Task End");
         }
 
-        public static async Task<bool> DownloadAndSetWallpaperAsync(bool isManual)
+        public IAsyncOperation<bool> DownloadAndSetWallpaperAsync(bool isManual)
+        {
+            return DownloadAndSetWallpaperHelper(isManual).AsAsyncOperation();
+        }
+
+        private static async Task<bool> DownloadAndSetWallpaperHelper(bool isManual)
         {
             //load localSetting
             var localSetting = ApplicationData.Current.LocalSettings;

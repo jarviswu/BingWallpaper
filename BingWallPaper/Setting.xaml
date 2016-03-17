@@ -19,10 +19,15 @@
                 <ComboBoxItem Content="1920*1080"></ComboBoxItem>
                 <ComboBoxItem Content="2736*1824"></ComboBoxItem>
             </ComboBox>
-            <TextBlock Text="每日更新时间" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
+            <!--<TextBlock Text="每日更新时间" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
             <Button  Content="00：00" Background="#33FFFFFF" BorderBrush="Black" Foreground="Black"></Button>
-            <TextBlock Margin="0,0,0,10" TextWrapping="Wrap" Text="（假的，由于系统限制暂时不知道怎么实现，可我真的好想实现它，所以先放着了_(:D)∠)_）" Foreground="#FFF41111"></TextBlock>
-            <Button Content="现在就换！"></Button>
+            <TextBlock Margin="0,0,0,10" TextWrapping="Wrap" Text="（假的，由于系统限制暂时不知道怎么实现，可我真的好想实现它，所以先放着了_(:D)∠)_）" Foreground="#FFF41111"></TextBlock>-->
+            <Button Name="BtnSetNow" Background="#33FFFFFF" BorderBrush="Black" Foreground="Black"  Content="现在就换！" Click="BtnSetNow_Click" Margin="0,0,0,10"></Button>
+            <StackPanel Orientation="Horizontal" >
+                <ProgressRing Name="pbSetting" Margin="4" HorizontalAlignment="Left"/>
+                <TextBlock Name="txtSetting" Visibility="Collapsed" Text="设置壁纸中"></TextBlock>
+                <TextBlock Name="txtResult" Visibility="Collapsed"></TextBlock>
+            </StackPanel>
         </StackPanel>
         
     </Grid>

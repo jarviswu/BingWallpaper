@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using BingWallper.Helper;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -62,12 +63,14 @@ namespace BingWallPaper
                 _localSettings.Values[Consts.StrIsOn] = true;
 
                 //regist task
-                await BackGroundTaskHelper.RegisterBackgroundTask("BingWallPaper.BackGroundTask", "DownloadAndSetWallPaper",
-                   new TimeTrigger(1, false), new SystemCondition(SystemConditionType.InternetAvailable));
+                var task = BackGroundTaskHelper.RegisterBackgroundTask("BingWallpaper.Core.BackGroundTask", "DownloadAndSetWallPaper",
+                   new TimeTrigger(24*60, false), null);
+                await task;
             }
             else
             {
                 _localSettings.Values[Consts.StrIsOn] = false;
+                BackGroundTaskHelper.UnregisterExistTask("BingWallpaper.Core.BackGroundTask");
             }
         }
 
@@ -96,6 +99,20 @@ namespace BingWallPaper
         private void CbResolution_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _localSettings.Values[Consts.StrResolution] = CbResolution.SelectedIndex;
+        }
+
+        private async void BtnSetNow_Click(object sender, RoutedEventArgs e)
+        {
+            var result = BackGroundTask.DownloadAndSetWallpaperAsync(true);
+
+            pbSetting.IsActive = true;
+            txtSetting.Visibility = Visibility.Visible;
+            await result;
+            pbSetting.IsActive = false;
+            txtSetting.Visibility = Visibility.Collapsed;
+
+            txtResult.Text = result.Result ? "设置成功" : "设置失败";
+            txtResult.Visibility = Visibility.Visible;
         }
     }
 }

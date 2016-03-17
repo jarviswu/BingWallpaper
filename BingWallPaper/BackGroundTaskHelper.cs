@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace BingWallPaper
         public static async Task<BackgroundTaskRegistration> RegisterBackgroundTask(string taskEntryPoint, string name,
             IBackgroundTrigger trigger, IBackgroundCondition condition)
         {
+            
             UnregisterExistTask(name);
 
             await BackgroundExecutionManager.RequestAccessAsync();
@@ -37,10 +39,11 @@ namespace BingWallPaper
 
             var task = builder.Register();
 
+           
             return task;
         }
 
-        private static void UnregisterExistTask(string taskName)
+        public static void UnregisterExistTask(string taskName)
         {
             foreach (var cur in BackgroundTaskRegistration.AllTasks)
             {

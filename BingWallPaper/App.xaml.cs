@@ -8,6 +8,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +16,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using BingWallpaper.Core;
+using BingWallper.Helper;
 
 namespace BingWallPaper
 {
@@ -45,6 +48,15 @@ namespace BingWallPaper
         protected override void OnLaunched(LaunchActivatedEventArgs e)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
+            //load localSetting
+            var localSetting = ApplicationData.Current.LocalSettings;
+            var folder = localSetting.Values[Consts.StrFolder] as string;
+            var isOn = localSetting.Values[Consts.StrIsOn] as bool?;
+            var resolution = localSetting.Values[Consts.StrResolution] as int?;
+            //download
+            var wallpaper = new WallPaper(Consts.DicResolution[resolution.Value], Consts.Region.ZhCn, folder);
+            var picture = wallpaper.DownloadWallPaperAsync();
+
             //await BackGroundTaskHelper.RegisterBackgroundTask("BingWallPaper.BackGroundTask", "DownloadAndSetWallPaper",
             //       new TimeTrigger(60 * 24, false), new SystemCondition(SystemConditionType.InternetAvailable));
             //#if DEBUG
@@ -81,6 +93,7 @@ namespace BingWallPaper
                 // parameter
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+
             // Ensure the current window is active
             Window.Current.Activate();
         }

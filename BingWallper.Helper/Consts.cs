@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BingWallPaper
+namespace BingWallper.Helper
 {
     public class Consts
     {
@@ -30,10 +30,10 @@ namespace BingWallPaper
 
         public static readonly Dictionary<int, string> DicResolution = new Dictionary<int, string>
         {
-            {1, "1366x768"},
-            {2, "768x1366"},
-            {3, "1920x1080"},
-            {4, "1080x1920"}
+            {0, "1366x768"},
+            {1, "768x1366"},
+            {2, "1920x1080"},
+            {3, "1080x1920"}
         };
 
         public const string BingBaseUrl = "http://www.bing.com";

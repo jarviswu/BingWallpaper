@@ -22,7 +22,7 @@ namespace BingWallpaper.Core
             deferral.Complete();
         }
 
-        public IAsyncOperation<bool> DownloadAndSetWallpaperAsync(bool isManual)
+        public static IAsyncOperation<bool> DownloadAndSetWallpaperAsync(bool isManual)
         {
             return DownloadAndSetWallpaperHelper(isManual).AsAsyncOperation();
         }
@@ -42,14 +42,19 @@ namespace BingWallpaper.Core
 
             //download
             var wallpaper = new WallPaper(Consts.DicResolution[resolution.Value], Consts.Region.ZhCn, folder);
-            var filePath = await wallpaper.DownloadWallPaperAsync();
+            var file = await wallpaper.DownloadWallPaperAsync();
 
             //set wallpaper
-            return await SetWallpaperAsync(filePath);
+            return await SetWallpaperAsync(file);
+        }
+
+        public static IAsyncOperation<bool> SetWallpaperAsync(StorageFile file)
+        {
+            return SetWallpaperHelper(file).AsAsyncOperation();
         }
 
         // Pass in a relative path to a file inside the local appdata folder 
-        private static async Task<bool> SetWallpaperAsync(StorageFile file)
+        private static async Task<bool> SetWallpaperHelper(StorageFile file)
         {
             bool success = false;
             if (UserProfilePersonalizationSettings.IsSupported())

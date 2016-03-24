@@ -9,6 +9,7 @@ using Windows.ApplicationModel.Background;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.Search;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -40,22 +41,17 @@ namespace BingWallPaper
         }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-                              /// <summary>
-                              /// Invoked when the application is launched normally by the end user.  Other entry points
-                              /// will be used such as when the application is launched to open a specific file.
-                              /// </summary>
-                              /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        /// <summary>
+        /// Invoked when the application is launched normally by the end user.  Other entry points
+        /// will be used such as when the application is launched to open a specific file.
+        /// </summary>
+        /// <param name="e">Details about the launch request and process.</param>
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            //load localSetting
-            var localSetting = ApplicationData.Current.LocalSettings;
-            var folder = localSetting.Values[Consts.StrFolder] as string;
-            var isOn = localSetting.Values[Consts.StrIsOn] as bool?;
-            var resolution = localSetting.Values[Consts.StrResolution] as int?;
-            //download
-            var wallpaper = new WallPaper(Consts.DicResolution[resolution.Value], Consts.Region.ZhCn, folder);
-            var picture = wallpaper.DownloadWallPaperAsync();
+
+
+
 
             //await BackGroundTaskHelper.RegisterBackgroundTask("BingWallPaper.BackGroundTask", "DownloadAndSetWallPaper",
             //       new TimeTrigger(60 * 24, false), new SystemCondition(SystemConditionType.InternetAvailable));

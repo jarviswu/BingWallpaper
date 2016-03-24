@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using BingWallpaper.Core;
 using BingWallper.Helper;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -111,7 +112,7 @@ namespace BingWallPaper
             pbSetting.IsActive = false;
             txtSetting.Visibility = Visibility.Collapsed;
 
-            txtResult.Text = result.Result ? "设置成功" : "设置失败";
+            txtResult.Text = result.GetResults() ? "设置成功" : "设置失败";
             txtResult.Visibility = Visibility.Visible;
         }
     }

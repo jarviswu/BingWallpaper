@@ -17,7 +17,7 @@
         </RelativePanel>
         <SplitView Name="MySplitView" Grid.Row="1" DisplayMode="CompactOverlay"  OpenPaneLength="180" CompactPaneLength="48" HorizontalAlignment="Left">
             <SplitView.Pane>
-                <ListBox SelectionMode="Single" Name="IconListBox" SelectionChanged="IconListBox_OnSelectionChanged">
+                <ListBox SelectionMode="Single" Name="IconListBox" SelectionChanged="IconListBox_OnSelectionChanged" Opacity="0.5">
                     <ListBoxItem Name="TodayBingItem">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="20" Text="&#xE80F;" Margin="2,4,0,0"></TextBlock>
